@@ -35,11 +35,12 @@ class Enrollment
         static void RegisterNewStudent()
         {
             Console.WriteLine("\nRegister as a New Student\n");
-            Console.Write("Enter your Full Name:\n");
+            Console.Write("Enter your Full Name: ");
             string name = Console.ReadLine();
+            Console.WriteLine("\nYour name is: " + name);
 
-            Console.WriteLine("Choose your Course you want to apply:\n");
-            string[] courses = { "Bachelor of Science in Information Technology", "Diploma in Information Technology", "Exit" };
+            Console.WriteLine("\nChoose your Course you want to apply:");
+            string[] courses = { "[1] Bachelor of Science in Information Technology", "[2] Diploma in Information Technology", "[3] Exit" };
 
             foreach (string course in courses)
             {
@@ -48,28 +49,28 @@ class Enrollment
             Console.WriteLine("\nEnter your Course: ");
             string courseChoice = Console.ReadLine();
 
-            if (courseChoice == "Exit")
+            if (courseChoice == "3")
             {
                 Console.WriteLine("Exiting Enrollment, Thank you for choosing our school!!!");
                 return;
             }
-            if (courseChoice == "Bachelor of Science in Information Technology")
+            if (courseChoice == "1")
             {
-                Console.WriteLine();
+                Console.WriteLine("----------------------------------------------");
                 Console.WriteLine("You have chosen Bachelor of Science in Information Technology");
                 Console.ReadKey();
                 Console.WriteLine("You are now registered as a new student of BSIT!");
             }
-            else if (courseChoice == "Diploma in Information Technology")
+            else if (courseChoice == "2")
             {
-                Console.WriteLine();
+                Console.WriteLine("----------------------------------------------");
                 Console.WriteLine("You have chosen Diploma in Information Technology");
                 Console.ReadKey();
                 Console.WriteLine("You are now registered as a new student of DIT!");
             }
             else
             {
-                Console.WriteLine("Invalid Course, Please put a course what show below.");
+                Console.WriteLine("Invalid Course. Please put the correct course what show below.");
                 return;
             }
 

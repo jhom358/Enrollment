@@ -10,7 +10,7 @@ class Enrollment
 
         string[] actions = new string[] {
         "[1] Faculty",
-        "[2] Student",
+        "[2] Register as a new Student",
         "[3] Exit" };
 
         foreach (string action in actions)
@@ -49,7 +49,12 @@ class Enrollment
         Console.WriteLine("\nYour name is: " + name);
 
         Console.WriteLine("\nChoose your Course you want to apply:\n");
-        string[] courses = { "[1] Bachelor of Science in Information Technology", "[2] Diploma in Information Technology", "[3] Exit" };
+        string[] courses = { "[1] Bachelor of Science in Information Technology", "[2] Diploma in Information Technology",
+            "[3] Bachelor of Science in Computer Engineering", "[4] Bachelor of Science in Industrial Engineering", "[5] Diploma in Computer Engineering", "[6] Diploma in Industrial Engineering Technology",
+            "[7] Bachelor of Science in Psychology", "[8] Bachelor of Science in Business Administration Major in Human Resource Management",
+            "[9] Bachelor of Secondary Education Major in English", "[10] Bachelor of Secondary Education Major in Social Studies", "[11] Bachelor of Elementary Education",
+            "[12] Bachelor of Science in Accountancy", "[13] Exit" };
+
 
         foreach (string course in courses)
         {
@@ -58,7 +63,7 @@ class Enrollment
         Console.Write("\nEnter your Course: ");
         string courseChoice = Console.ReadLine();
 
-        if (courseChoice == "3")
+        if (courseChoice == "13")
         {
             Console.WriteLine("Exiting Enrollment, Thank you for choosing our school!!!");
             return;
@@ -77,12 +82,84 @@ class Enrollment
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DIT!");
         }
+        else if (courseChoice == "3")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Science in Computer Engineering");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSCPE!");
+
+        }
+        else if (courseChoice == "4")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Science in Industrial Engineering");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSIE!");
+        }
+        else if (courseChoice == "5")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Diploma in Computer Engineering");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of DCE!");
+        }
+        else if (courseChoice == "6")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Diploma in Industrial Engineering Technology");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of DIET!");
+        }
+        else if (courseChoice == "7")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Science in Psychology");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSP!");
+        }
+        else if (courseChoice == "8")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Science in Business Administration Major in Human Resource Management");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSBA-HRM!");
+        }
+        else if (courseChoice == "9")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Secondary Education Major in English");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSE-English!");
+        }
+        else if (courseChoice == "10")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Secondary Education Major in Social Studies");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSE-Social Studies!");
+        }
+        else if (courseChoice == "11")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Elementary Education");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BEED!");
+        }
+        else if (courseChoice == "12")
+        {
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("You have chosen Bachelor of Science in Accountancy");
+            Console.ReadKey();
+            Console.WriteLine("You are now enrolled as a new student of BSA!");
+        }
         else
         {
             Console.WriteLine("Invalid Course. Please put the correct course number as shown below.");
             return;
         }
     }
+
 
     static void Faculty()
     {
@@ -99,10 +176,11 @@ class Enrollment
         }
         else
         {
-            Console.WriteLine("Invalid Username, Please try again.");
+            Console.WriteLine("Invalid Username. Please try again.");
+            return;
         }
-            Console.WriteLine();
-            Console.Write("Enter your Password: ");
+        Console.WriteLine();
+        Console.Write("Enter your Password: ");
 
         string password = Console.ReadLine();
 

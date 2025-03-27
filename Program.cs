@@ -207,7 +207,9 @@ class Enrollment
         }
         else
         {
+            Console.WriteLine();
             Console.WriteLine("Invalid Username. Please try again.");
+            LoginAdmin();
             return;
         }
         Console.WriteLine();
@@ -222,7 +224,8 @@ class Enrollment
         }
         else
         {
-            Console.WriteLine("Incorrect username or password");
+            Console.WriteLine("Incorrect username or Password.");
+            LoginAdmin();
         }
     }
     static void Admin()
@@ -230,7 +233,7 @@ class Enrollment
         Console.WriteLine("----------------------------------------------");
 
         Console.WriteLine("[1] Show Students\n[2] Remove Students\n[3] Exit");
-        Console.Write("Enter action : ");
+        Console.Write("Enter action: ");
         int action = Convert.ToInt16(Console.ReadLine());
         if (action == 1)
         {

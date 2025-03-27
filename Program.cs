@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Runtime.Intrinsics.X86;
 using EnrollmentBusinessLogic;
 
 class Enrollment
@@ -15,7 +16,7 @@ class Enrollment
         Console.WriteLine("ENROLLMENT FOR SCHOOL YEAR 2025-2026\n");
 
         string[] actions = new string[] {
-        "[1] Faculty",
+        "[1] Admin",
         "[2] Register as a new Student",
         "[3] Exit" };
 
@@ -30,7 +31,7 @@ class Enrollment
         switch (choice)
         {
             case "1":
-                Faculty();
+                LoginAdmin();
                 break;
             case "2":
                 RegisterNewStudent();
@@ -40,17 +41,18 @@ class Enrollment
                 break;
             default:
                 Console.WriteLine("Invalid Choice. Please choose between 1-3 only.");
+                Menu();
                 break;
+
         }
     }
-
     static void RegisterNewStudent()
     {
         Console.WriteLine("\nRegister as a New Student\n");
 
         Console.Write("Enter your Full Name: ");
 
-        string name = Console.ReadLine();
+        string name = Console.ReadLine().ToUpper();
 
         Console.WriteLine("\nYour name is: " + name);
 
@@ -66,6 +68,7 @@ class Enrollment
         {
             Console.WriteLine(course);
         }
+
         Console.Write("\nEnter your Course: ");
         string courseChoice = Console.ReadLine();
 
@@ -188,17 +191,16 @@ class Enrollment
             return;
         }
     }
-
-
-    static void Faculty()
+    static void LoginAdmin()
     {
-        Console.WriteLine("\nLog in as a Faculty");
+        Console.WriteLine("----------------------------------------------");
+        Console.WriteLine("\nLog in as a Admin");
 
-        Console.Write("\nEnter your Faculty Account: ");
+        Console.Write("\nEnter your Admin Account: ");
 
         string username = Console.ReadLine();
 
-        if (username == "jhom")
+        if (username == "admin")
         {
             Console.WriteLine();
             Console.WriteLine("Username Successful.");
@@ -213,39 +215,65 @@ class Enrollment
 
         string password = Console.ReadLine();
 
-        if (username == "jhom" && password == "123")
+        if (username == "admin" && password == "123")
         {
-            Console.WriteLine();
             Console.WriteLine("Log in Successful!");
-            Console.WriteLine("[1] Show Students\n[2] Remove Students\n[3] Exit");
-            Console.Write("Enter action : ");
-            int action = Convert.ToInt16(Console.ReadLine());
-            if (action == 1)
-            {
-                Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("Name \t Program");
-                foreach (var showStud in EnrollBusinessLogic.enrolledStudents)
-                {
-                    Console.WriteLine(showStud);
-                }
-            else if (action == 2)
-                {
-                    Console.WriteLine("Enter the name of the student you want to remove: ");
-                    string removeStudent = Console.ReadLine();
-                    EnrollBusinessLogic.enrolledStudents.Remove(removeStudent);
-                    Console.WriteLine("Student Removed Successfully!");
-                    Menu();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Exiting the System");
-                Menu();
-            }
+            Admin();
         }
         else
         {
-            Console.WriteLine("Invalid Username or Password. Please try again.");
+            Console.WriteLine("Incorrect username or password");
         }
+    }
+    static void Admin()
+    {
+        Console.WriteLine("----------------------------------------------");
+
+        Console.WriteLine("[1] Show Students\n[2] Remove Students\n[3] Exit");
+        Console.Write("Enter action : ");
+        int action = Convert.ToInt16(Console.ReadLine());
+        if (action == 1)
+        {
+
+            ShowStudents();
+        }
+        else if (action == 2)
+        {
+            Console.Write("Enter the name of the student you want to remove: ");
+            string removeStudent = Console.ReadLine().ToUpper();
+
+            if (EnrollBusinessLogic.RemoveStudent(removeStudent))
+            {
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("Student Removed Successfully!");
+            }
+            else
+            {
+                Console.WriteLine("No Student Found!");
+            }
+            Admin();
+        }
+
+        else
+        {
+            Console.WriteLine("Exiting the System");
+            Menu();
+        }
+
+
+    }
+    static void ShowStudents()
+    {
+        Console.WriteLine("----------------------------------------------");
+        Console.WriteLine("Name \t Program");
+
+
+        for (int i = 0; i <= EnrollBusinessLogic.nameOfStudents.Count - 1; i++)
+        {
+            Console.WriteLine(EnrollBusinessLogic.nameOfStudents[i] + "\t" + EnrollBusinessLogic.programOfStudents[i]);
+
+        }
+        Console.ReadKey();
+        Admin();
     }
 }

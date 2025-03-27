@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Runtime.Intrinsics.X86;
 using EnrollmentBusinessLogic;
 
 class Enrollment
@@ -11,6 +9,7 @@ class Enrollment
     }
     static void Menu()
     {
+        Console.WriteLine();
         Console.WriteLine("WELCOME!!!\n");
 
         Console.WriteLine("ENROLLMENT FOR SCHOOL YEAR 2025-2026\n");
@@ -75,6 +74,7 @@ class Enrollment
         if (courseChoice == "13")
         {
             Console.WriteLine("Exiting Enrollment, Thank you for choosing our school!!!");
+            Menu();
             return;
         }
         if (courseChoice == "1")
@@ -239,6 +239,7 @@ class Enrollment
         }
         else if (action == 2)
         {
+            Console.WriteLine("----------------------------------------------");
             Console.Write("Enter the name of the student you want to remove: ");
             string removeStudent = Console.ReadLine().ToUpper();
 

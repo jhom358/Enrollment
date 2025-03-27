@@ -1,8 +1,14 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using EnrollmentBusinessLogic;
 
 class Enrollment
 {
     static void Main(string[] args)
+    {
+        Menu();
+    }
+    static void Menu()
     {
         Console.WriteLine("WELCOME!!!\n");
 
@@ -72,86 +78,109 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Information Technology");
+            EnrollBusinessLogic.studentList(name, "BSIT");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSIT!");
+            Menu();
         }
         else if (courseChoice == "2")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Information Technology");
+            EnrollBusinessLogic.studentList(name, "DIT");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DIT!");
+            Menu();
         }
         else if (courseChoice == "3")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Computer Engineering");
+            EnrollBusinessLogic.studentList(name, "BSCPE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSCPE!");
-
+            Menu();
         }
         else if (courseChoice == "4")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Industrial Engineering");
+            EnrollBusinessLogic.studentList(name, "BSIE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSIE!");
+            Menu();
         }
         else if (courseChoice == "5")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Computer Engineering");
+            EnrollBusinessLogic.studentList(name, "DCE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DCE!");
+            Menu();
         }
         else if (courseChoice == "6")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Industrial Engineering Technology");
+            EnrollBusinessLogic.studentList(name, "DIET");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DIET!");
+            Menu();
         }
         else if (courseChoice == "7")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Psychology");
+            EnrollBusinessLogic.studentList(name, "BSP");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSP!");
+            Menu();
         }
         else if (courseChoice == "8")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Business Administration Major in Human Resource Management");
+            EnrollBusinessLogic.studentList(name, "BSBA-HRM");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSBA-HRM!");
+            Menu();
         }
         else if (courseChoice == "9")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Secondary Education Major in English");
+            EnrollBusinessLogic.studentList(name, "BSE-ENGLISH");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSE-English!");
+            Menu();
         }
         else if (courseChoice == "10")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Secondary Education Major in Social Studies");
+            EnrollBusinessLogic.studentList(name, "BSE-SOCIAL STUDIES");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSE-Social Studies!");
+            Menu();
         }
         else if (courseChoice == "11")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Elementary Education");
+            EnrollBusinessLogic.studentList(name, "BEED");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BEED!");
+            Menu();
         }
         else if (courseChoice == "12")
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Accountancy");
+            EnrollBusinessLogic.studentList(name, "BSA");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSA!");
+            Menu();
         }
         else
         {
@@ -188,6 +217,31 @@ class Enrollment
         {
             Console.WriteLine();
             Console.WriteLine("Log in Successful!");
+            Console.WriteLine("[1] Show Students\n[2] Remove Students\n[3] Exit");
+            Console.Write("Enter action : ");
+            int action = Convert.ToInt16(Console.ReadLine());
+            if (action == 1)
+            {
+                Console.WriteLine("----------------------------------------------");
+                Console.WriteLine("Name \t Program");
+                foreach (var showStud in EnrollBusinessLogic.enrolledStudents)
+                {
+                    Console.WriteLine(showStud);
+                }
+            else if (action == 2)
+                {
+                    Console.WriteLine("Enter the name of the student you want to remove: ");
+                    string removeStudent = Console.ReadLine();
+                    EnrollBusinessLogic.enrolledStudents.Remove(removeStudent);
+                    Console.WriteLine("Student Removed Successfully!");
+                    Menu();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Exiting the System");
+                Menu();
+            }
         }
         else
         {

@@ -187,8 +187,8 @@ class Enrollment
         }
         else
         {
-            Console.WriteLine("Invalid Course. Please put the correct course number as shown below.");
-            return;
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("Invalid Course Number. Please put the correct course number as shown below.");
         }
     }
     static void LoginAdmin()
@@ -210,7 +210,6 @@ class Enrollment
             Console.WriteLine();
             Console.WriteLine("Invalid Username. Please try again.");
             LoginAdmin();
-            return;
         }
         Console.WriteLine();
         Console.Write("Enter your Password: ");
@@ -219,11 +218,13 @@ class Enrollment
 
         if (username == "admin" && password == "123")
         {
+            Console.WriteLine();
             Console.WriteLine("Log in Successful!");
             Admin();
         }
         else
         {
+            Console.WriteLine();
             Console.WriteLine("Incorrect username or Password.");
             LoginAdmin();
         }
@@ -231,7 +232,6 @@ class Enrollment
     static void Admin()
     {
         Console.WriteLine("----------------------------------------------");
-
         Console.WriteLine("[1] Show Students\n[2] Remove Students\n[3] Exit");
         Console.Write("Enter action: ");
         int action = Convert.ToInt16(Console.ReadLine());
@@ -253,13 +253,15 @@ class Enrollment
             }
             else
             {
-                Console.WriteLine("No Student Found!");
+                Console.WriteLine();
+                Console.WriteLine("No Student Found! Please put the correct Student Name that you want to remove.");
             }
             Admin();
         }
 
         else
         {
+            Console.WriteLine();
             Console.WriteLine("Exiting the System");
             Menu();
         }

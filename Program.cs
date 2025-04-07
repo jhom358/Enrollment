@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using EnrollmentBusinessLogic;
 
 class Enrollment
@@ -59,7 +60,6 @@ class Enrollment
             "[7] Bachelor of Science in Psychology", "[8] Bachelor of Science in Business Administration Major in Human Resource Management",
             "[9] Bachelor of Secondary Education Major in English", "[10] Bachelor of Secondary Education Major in Social Studies", "[11] Bachelor of Elementary Education",
             "[12] Bachelor of Science in Accountancy", "[13] Exit" };
-
 
         foreach (string course in courses)
         {
@@ -192,7 +192,6 @@ class Enrollment
     }
     static void LoginAdmin()
     {
-        Console.WriteLine("----------------------------------------------");
         Console.WriteLine("\nLog in as a Admin");
 
         Console.Write("\nEnter your Admin Account: ");
@@ -231,7 +230,7 @@ class Enrollment
     static void Admin()
     {
         Console.WriteLine("----------------------------------------------");
-        Console.WriteLine("[1] View Enrolled Students\n[2] Remove Enrolled Students\n[3] Exit");
+        Console.WriteLine("[1] View Enrolled Students\n[2] Remove Enrolled Students\n[3] Edit the Name or Program of the Enrolled Students\n[4] Exit");
         Console.Write("Enter action: ");
         int action = Convert.ToInt16(Console.ReadLine());
         if (action == 1)
@@ -255,7 +254,12 @@ class Enrollment
                 Console.WriteLine();
                 Console.WriteLine("No Student Found! Please put the correct Student Name that you want to remove.");
             }
+
             Admin();
+        }
+        else if (action == 3)
+        {
+            EditStudent();
         }
 
         else
@@ -264,6 +268,7 @@ class Enrollment
             Console.WriteLine("Exiting the System");
             Menu();
         }
+
 
 
     }
@@ -280,6 +285,67 @@ class Enrollment
         }
 
         Console.ReadKey();
+        Admin();
+    }
+    static void EditStudent()
+    {
+        Console.WriteLine("----------------------------------------------");
+        Console.Write("Enter the name of the student you want to edit: ");
+        string editStudent = Console.ReadLine().ToUpper();
+
+        int index = EnrollBusinessLogic.nameOfStudents.IndexOf(editStudent);
+
+        if (index == -1)
+        {
+            Console.WriteLine("Student not found.");
+            Admin();
+        }
+
+        Console.WriteLine("What do you want to edit?");
+        Console.WriteLine("[1] Name");
+        Console.WriteLine("[2] Program");
+        Console.Write("Enter Choice: ");
+        string editChoice = Console.ReadLine();
+
+        if (editChoice == "1")
+        {
+            Console.Write("Enter the new name: ");
+            string newName = Console.ReadLine().ToUpper();
+            EnrollBusinessLogic.nameOfStudents[index] = newName;
+            Console.WriteLine("Name updated successfully!");
+        }
+        else if (editChoice == "2")
+        {
+            Console.WriteLine("Choose new program:");
+
+            string[] programs = {
+            "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET", "BSP", "BSBA-HRM",
+            "BSE-ENGLISH", "BSE-SOCIAL STUDIES", "BEED", "BSA"
+        };
+
+            for (int i = 0; i < programs.Length; i++)
+            {
+                Console.WriteLine($"[{i + 1}] {programs[i]}");
+            }
+
+            Console.Write("Enter program number: ");
+            int programChoice = Convert.ToInt32(Console.ReadLine());
+
+            if (programChoice >= 1 && programChoice <= programs.Length)
+            {
+                EnrollBusinessLogic.programOfStudents[index] = programs[programChoice - 1];
+                Console.WriteLine("Program updated successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid program selection.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid Choice.");
+        }
+
         Admin();
     }
 

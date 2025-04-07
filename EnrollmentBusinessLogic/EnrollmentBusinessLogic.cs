@@ -14,7 +14,7 @@
         }
         public static string generateStudentID()
         {
-            return "S" + (1000 + nameOfStudents.Count + 1).ToString();
+            return "S" + (1000   + nameOfStudents.Count + 1).ToString();
         }
         public static bool RemoveStudent(string name)
         {
@@ -24,6 +24,7 @@
                 programOfStudents.RemoveAt(studentOrder);
                 nameOfStudents.Remove(name);
                 studentIDs.RemoveAt(studentOrder);
+
                 return true;
             }
             return false;

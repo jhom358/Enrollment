@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using EnrollmentBusinessLogic;
+using EnrollmentCommon;
 
 class Enrollment
 {
+    static EnrollmentManager enrollmentManager = new EnrollmentManager();
     static void Main(string[] args)
     {
         Menu();
@@ -15,7 +17,7 @@ class Enrollment
 
         Console.WriteLine("ENROLLMENT FOR SCHOOL YEAR 2025-2026\n");
 
-        string[] actions = new string[] {  "[1] Admin", "[2] Register as a new Student","[3] Exit" };
+        string[] actions = new string[] { "[1] Admin", "[2] Register as a new Student", "[3] Exit" };
 
         foreach (string action in actions)
         {
@@ -79,7 +81,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Information Technology");
-            EnrollBusinessLogic.studentList(name, "BSIT", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSIT");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSIT!");
             Menu();
@@ -88,7 +91,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Information Technology");
-            EnrollBusinessLogic.studentList(name, "DIT", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "DIT");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DIT!");
             Menu();
@@ -97,7 +101,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Computer Engineering");
-            EnrollBusinessLogic.studentList(name, "BSCPE", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSCPE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSCPE!");
             Menu();
@@ -106,7 +111,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Industrial Engineering");
-            EnrollBusinessLogic.studentList(name, "BSIE", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSIE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSIE!");
             Menu();
@@ -115,7 +121,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Computer Engineering");
-            EnrollBusinessLogic.studentList(name, "DCE", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "DCE");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DCE!");
             Menu();
@@ -124,7 +131,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Diploma in Industrial Engineering Technology");
-            EnrollBusinessLogic.studentList(name, "DIET", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "DIET");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of DIET!");
             Menu();
@@ -133,7 +141,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Psychology");
-            EnrollBusinessLogic.studentList(name, "BSP", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSP");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSP!");
             Menu();
@@ -142,7 +151,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Business Administration Major in Human Resource Management");
-            EnrollBusinessLogic.studentList(name, "BSBA-HRM", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSBA-HRM");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSBA-HRM!");
             Menu();
@@ -151,7 +161,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Secondary Education Major in English");
-            EnrollBusinessLogic.studentList(name, "BSE-ENGLISH", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSE-English");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSE-English!");
             Menu();
@@ -160,7 +171,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Secondary Education Major in Social Studies");
-            EnrollBusinessLogic.studentList(name, "BSE-SOCIAL STUDIES", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSE-Social Studies");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSE-Social Studies!");
             Menu();
@@ -169,7 +181,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Elementary Education");
-            EnrollBusinessLogic.studentList(name, "BEED", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BEED");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BEED!");
             Menu();
@@ -178,7 +191,8 @@ class Enrollment
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("You have chosen Bachelor of Science in Accountancy");
-            EnrollBusinessLogic.studentList(name, "BSA", EnrollBusinessLogic.generateStudentID());
+            EnrollmentManager enrollmentManager = new EnrollmentManager();
+            enrollmentManager.EnrollStudent(name, "BSA");
             Console.ReadKey();
             Console.WriteLine("You are now enrolled as a new student of BSA!");
             Menu();
@@ -233,6 +247,8 @@ class Enrollment
         Console.WriteLine("[1] View Enrolled Students\n[2] Remove Enrolled Students\n[3] Edit the Name or Program of the Enrolled Students\n[4] Exit");
         Console.Write("Enter action: ");
         int action = Convert.ToInt16(Console.ReadLine());
+        EnrollmentManager enrollmentManager = new EnrollmentManager();
+
         if (action == 1)
         {
 
@@ -244,7 +260,7 @@ class Enrollment
             Console.Write("Enter the name of the student you want to remove: ");
             string removeStudent = Console.ReadLine().ToUpper();
 
-            if (EnrollBusinessLogic.RemoveStudent(removeStudent))
+            if (enrollmentManager.RemoveStudent(removeStudent))
             {
                 Console.WriteLine("----------------------------------------------");
                 Console.WriteLine("Removed Enrolled Student Successfully!");
@@ -274,13 +290,14 @@ class Enrollment
     }
     static void ShowStudents()
     {
-        Console.WriteLine("----------------------------------------------");
+        EnrollmentManager enrollmentManager = new EnrollmentManager();
+        var students = enrollmentManager.GetAllStudents();
 
-        for (int i = 0; i < EnrollBusinessLogic.nameOfStudents.Count; i++)
+        foreach (var student in students)
         {
-            Console.WriteLine($"Name: {EnrollBusinessLogic.nameOfStudents[i]}");
-            Console.WriteLine($"Program: {EnrollBusinessLogic.programOfStudents[i]}");
-            Console.WriteLine($"Student ID: {EnrollBusinessLogic.studentIDs[i]}");
+            Console.WriteLine($"Name: {student.Name}");
+            Console.WriteLine($"Program: {student.Program}");
+            Console.WriteLine($"Student ID: {student.StudentID}");
             Console.WriteLine("----------------------------------------------");
         }
 
@@ -290,34 +307,36 @@ class Enrollment
     static void EditStudent()
     {
         Console.WriteLine("----------------------------------------------");
-        Console.Write("Enter the name of the student you want to edit: ");
+        Console.Write("Enter the name of the student you want to Edit: ");
         string editStudent = Console.ReadLine().ToUpper();
 
-        int index = EnrollBusinessLogic.nameOfStudents.IndexOf(editStudent);
-
-        if (index == -1)
+        var student = enrollmentManager.GetStudent(editStudent);
+        if (student == null)
         {
-            Console.WriteLine("Student not found.");
+            Console.WriteLine();
+            Console.WriteLine("Student not Found.");
             Admin();
+            return;
         }
+        Console.WriteLine("----------------------------------------------");
+        Console.WriteLine("What do you want to Edit?");
+        Console.WriteLine("[1] Name\n[2] Program");
+        Console.WriteLine("----------------------------------------------");
+        Console.Write("Enter an Action: ");
+        string choice = Console.ReadLine();
 
-        Console.WriteLine("What do you want to edit?");
-        Console.WriteLine("[1] Name");
-        Console.WriteLine("[2] Program");
-        Console.Write("Enter Choice: ");
-        string editChoice = Console.ReadLine();
-
-        if (editChoice == "1")
+        if (choice == "1")
         {
-            Console.Write("Enter the new name: ");
+            Console.WriteLine("----------------------------------------------");
+            Console.Write("Enter new Name: ");
             string newName = Console.ReadLine().ToUpper();
-            EnrollBusinessLogic.nameOfStudents[index] = newName;
-            Console.WriteLine("Name updated successfully!");
+            enrollmentManager.UpdateStudentName(student.Name, newName);
+            Console.WriteLine("Name Updated!");
         }
-        else if (editChoice == "2")
+        else if (choice == "2")
         {
-            Console.WriteLine("Choose new program:");
-
+            Console.WriteLine("----------------------------------------------");
+            Console.WriteLine("Choose new Program: ");
             string[] programs = {
             "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET", "BSP", "BSBA-HRM",
             "BSE-ENGLISH", "BSE-SOCIAL STUDIES", "BEED", "BSA"
@@ -328,17 +347,16 @@ class Enrollment
                 Console.WriteLine($"[{i + 1}] {programs[i]}");
             }
 
-            Console.Write("Enter program number: ");
+            Console.Write("Enter program Number: ");
             int programChoice = Convert.ToInt32(Console.ReadLine());
 
             if (programChoice >= 1 && programChoice <= programs.Length)
             {
-                EnrollBusinessLogic.programOfStudents[index] = programs[programChoice - 1];
-                Console.WriteLine("Program updated successfully!");
+                Console.WriteLine("Program updated Successfully!");
             }
             else
             {
-                Console.WriteLine("Invalid program selection.");
+                Console.WriteLine("Invalid Program Selection.");
             }
         }
         else

@@ -12,10 +12,6 @@
             programOfStudents.Add(program);
             studentIDs.Add(id);
         }
-        public static string generateStudentID()
-        {
-            return "S" + (1000   + nameOfStudents.Count + 1).ToString();
-        }
         public static bool RemoveStudent(string name)
         {
             if (nameOfStudents.Contains(name))

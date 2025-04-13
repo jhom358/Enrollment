@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentDataLogic", "Enro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentCommon", "EnrollmentCommon\EnrollmentCommon.csproj", "{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enrollment_BusinessDataLogic", "Enrollment_BusinessDataLogic\Enrollment_BusinessDataLogic.csproj", "{10B3C62F-994E-4979-8019-921BD3288E4F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10B3C62F-994E-4979-8019-921BD3288E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10B3C62F-994E-4979-8019-921BD3288E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10B3C62F-994E-4979-8019-921BD3288E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10B3C62F-994E-4979-8019-921BD3288E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

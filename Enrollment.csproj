@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="EnrollmentCommon\EnrollmentCommon.csproj" />
     <ProjectReference Include="EnrollmentDataLogic\EnrollmentDataLogic.csproj" />
-    <ProjectReference Include="Enrollment_BusinessDataLogic\Enrollment_BusinessDataLogic.csproj" />
   </ItemGroup>
 
 </Project>

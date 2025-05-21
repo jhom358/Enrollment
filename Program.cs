@@ -352,6 +352,8 @@ class Enrollment
 
             if (programChoice >= 1 && programChoice <= programs.Length)
             {
+                string newProgram = programs[programChoice - 1];
+                enrollmentManager.UpdateStudentProgram(student.Name, newProgram);
                 Console.WriteLine("Program updated Successfully!");
             }
             else

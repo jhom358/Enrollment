@@ -5,7 +5,7 @@ VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enrollment", "Enrollment.csproj", "{E5B31FF2-D333-4F52-A85B-D9E8CC16FF78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentDataLogic", "EnrollmentDataLogic\EnrollmentDataLogic.csproj", "{22A853DC-353E-4670-9A14-74479987FEAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentDataService", "EnrollmentDataLogic\EnrollmentDataService.csproj", "{22A853DC-353E-4670-9A14-74479987FEAF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentCommon", "EnrollmentCommon\EnrollmentCommon.csproj", "{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}"
 EndProject

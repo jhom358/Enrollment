@@ -1,25 +1,33 @@
 ﻿using EnrollmentCommon;
-using EnrollmentBusinessData;
+using EnrollmentDataService;
 using System.Collections.Generic;
 
 namespace EnrollmentBusinessLogic
 {
     public class EnrollmentManager
     {
+        private readonly IStudentDataService studentDataService;
+
+
+        public EnrollmentManager(IStudentDataService dataService)
+        {
+            studentDataService = dataService;
+        }
+
         public void EnrollStudent(string name, string program)
         {
             var student = new Student(name, program);
-            StudentDataService.AddStudent(student);
+            studentDataService.AddStudent(student);
         }
 
         public bool RemoveStudent(string name)
         {
-            return StudentDataService.RemoveStudent(name);
+            return studentDataService.RemoveStudent(name);
         }
 
         public Student GetStudent(string name)
         {
-            return StudentDataService.FindStudent(name);
+            return studentDataService.FindStudent(name);
         }
 
         public void UpdateStudentName(string oldName, string newName)
@@ -27,7 +35,7 @@ namespace EnrollmentBusinessLogic
             var student = GetStudent(oldName);
             if (student != null)
             {
-                StudentDataService.UpdateStudentName(student, newName);
+                studentDataService.UpdateStudentName(student, newName);
             }
         }
 
@@ -36,13 +44,13 @@ namespace EnrollmentBusinessLogic
             var student = GetStudent(name);
             if (student != null)
             {
-                StudentDataService.UpdateStudentProgram(student, newProgram);
+                studentDataService.UpdateStudentProgram(student, newProgram);
             }
         }
 
         public List<Student> GetAllStudents()
         {
-            return StudentDataService.GetAllStudents();
+            return studentDataService.GetAllStudents();
         }
     }
 }

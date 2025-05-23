@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace EnrollmentCommon
 {
     public class Student
@@ -30,11 +29,6 @@ namespace EnrollmentCommon
         {
             studentCount++;
             return "2025-" + studentCount.ToString("D5");
-        }
-
-        public static Student FirstOrDefault(Func<object, bool> value)
-        {
-            throw new NotImplementedException();
         }
     }
 }

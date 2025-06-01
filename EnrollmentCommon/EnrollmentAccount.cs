@@ -12,6 +12,7 @@ namespace EnrollmentCommon
         public string Name { get; set; }
         public string Program { get; set; }
         public string StudentID { get; set; }
+        public string Course { get; set; }
         public Student(string name, string program, string studentID)
         {
             Name = name;

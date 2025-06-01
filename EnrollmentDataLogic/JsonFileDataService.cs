@@ -28,6 +28,13 @@ namespace EnrollmentDataService
                 students = new List<Student>();
             }
         }
+
+        public bool Login(string name, string studentID)
+        {
+            var students = GetAllStudents(); // Fixed: Replaced LoadStudents with GetAllStudents  
+            return students.Any(s => s.Name == name && s.StudentID == studentID);
+        }
+
         public bool ValidateStudent(string name, string studentID)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(studentID))
@@ -97,7 +104,7 @@ namespace EnrollmentDataService
 
         public List<Student> GetAllStudents()
         {
-            return new List<Student>(students); 
+            return new List<Student>(students);
         }
 
         public bool RemoveStudent(string name)

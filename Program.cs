@@ -7,7 +7,7 @@ using EnrollmentDataService;
 
 class Enrollment
 {
-    static IStudentDataService dataService = new JsonFileDataService();
+    static IStudentDataService dataService = new DBEnrollmentService();
     static EnrollmentManager enrollmentManager = new EnrollmentManager(dataService);
 
     static void Main(string[] args)

@@ -11,5 +11,6 @@ namespace EnrollmentDataService
         Student FindStudent(string name);
         void UpdateStudentName(Student student, string newName);
         void UpdateStudentProgram(Student student, string newProgram);
+        bool Login(string? name, string? studentID);
     }
 }

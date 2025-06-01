@@ -63,8 +63,7 @@ class Enrollment
         Console.Write("Enter Student ID: ");
         string studentID = Console.ReadLine();
 
-        var loginService = new JsonLoginDataService(dataService);
-        bool isLoggedIn = loginService.Login(name, studentID);
+        bool isLoggedIn = dataService.Login(name, studentID);
 
         if (isLoggedIn)
         {

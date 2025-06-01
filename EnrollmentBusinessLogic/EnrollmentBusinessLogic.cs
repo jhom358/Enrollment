@@ -1,4 +1,6 @@
-﻿namespace EnrollmentBusinessLogic
+﻿using EnrollmentDataService;
+
+namespace EnrollmentBusinessLogic
 {
     public class EnrollBusinessLogic
     {

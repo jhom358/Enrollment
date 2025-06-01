@@ -89,5 +89,10 @@ namespace EnrollmentDataService
                 WriteJsonDataToFile();
             }
         }
+
+        public bool Login(string? name, string? studentID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

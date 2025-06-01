@@ -31,9 +31,19 @@ namespace EnrollmentDataService
 
         public bool Login(string name, string studentID)
         {
-            var students = GetAllStudents(); // Fixed: Replaced LoadStudents with GetAllStudents  
-            return students.Any(s => s.Name == name && s.StudentID == studentID);
+            var students = GetAllStudents();
+
+            foreach (var student in students)
+            {
+                if (student.Name == name && student.StudentID == studentID)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
+
 
         public bool ValidateStudent(string name, string studentID)
         {

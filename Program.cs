@@ -105,16 +105,14 @@ class Enrollment
             return;
         }
 
-        Dictionary<string, string> courseMap = new Dictionary<string, string>()
+        string[] programs = {
+        "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET",
+        "BSP", "BSBA-HRM", "BSE-ENGLISH", "BSE-SOCIAL STUDIES", "BEED", "BSA"
+    };
+        int courseIndex = Convert.ToInt32(courseChoice) - 1;
+        if (courseIndex >= 0 && courseIndex < programs.Length)
         {
-            {"1", "BSIT"}, {"2", "DIT"}, {"3", "BSCPE"}, {"4", "BSIE"},
-            {"5", "DCE"}, {"6", "DIET"}, {"7", "BSP"}, {"8", "BSBA-HRM"},
-            {"9", "BSE-ENGLISH"}, {"10", "BSE-SOCIAL STUDIES"}, {"11", "BEED"}, {"12", "BSA"}
-        };
-
-        if (courseMap.ContainsKey(courseChoice))
-        {
-            string program = courseMap[courseChoice];
+            string program = programs[courseIndex];
             enrollmentManager.EnrollStudent(name, program);
             Console.WriteLine($"You are now enrolled as a new student of {program}!");
         }
@@ -203,11 +201,6 @@ class Enrollment
             Console.WriteLine(info);
             studentLines.Add(info);
         }
-
-        File.WriteAllLines("students.txt", studentLines);
-        Console.WriteLine("\nExported to 'students.txt'.");
-        Console.ReadKey();
-        Admin();
     }
 
     static void EditStudent()
@@ -264,3 +257,4 @@ class Enrollment
         Admin();
     }
 }
+

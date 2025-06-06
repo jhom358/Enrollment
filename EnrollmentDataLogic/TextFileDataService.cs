@@ -32,6 +32,11 @@ namespace EnrollmentDataService
             throw new NotImplementedException();
         }
 
+        public int GetMaxStudentSequenceId()
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Login(string? name, string? studentID)
         {
             throw new NotImplementedException();

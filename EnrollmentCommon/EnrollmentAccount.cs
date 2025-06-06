@@ -8,11 +8,9 @@ namespace EnrollmentCommon
 {
     public class Student
     {
-        private static int studentCount = 0;
         public string Name { get; set; }
         public string Program { get; set; }
         public string StudentID { get; set; }
-        public string Course { get; set; }
         public Student(string name, string program, string studentID)
         {
             Name = name;
@@ -20,16 +18,12 @@ namespace EnrollmentCommon
             StudentID = studentID;
         }
 
-        public Student(string name, string program)
+        public Student()
         {
-            Name = name;
-            Program = program;
-            StudentID = GenerateStudentID();
+            Name = string.Empty;
+            Program = string.Empty;
+            StudentID = string.Empty;
         }
-        public string GenerateStudentID()
-        {
-            studentCount++;
-            return "2025-" + studentCount.ToString("D5");
-        }
+
     }
 }

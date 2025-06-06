@@ -1,23 +1,24 @@
 ﻿using EnrollmentCommon;
 using EnrollmentDataService;
 using System.Collections.Generic;
+using System; 
 
 namespace EnrollmentBusinessLogic
 {
     public class EnrollmentManager
     {
-        private readonly IStudentDataService studentDataService;
+        private IStudentDataService studentDataService;
+        public static int _currentStudentSequence; 
 
+        static EnrollmentManager()
+        {
+            DBEnrollmentService tempDbService = new DBEnrollmentService();
+            _currentStudentSequence = tempDbService.GetMaxStudentSequenceId();
+        }
 
         public EnrollmentManager(IStudentDataService dataService)
         {
             studentDataService = dataService;
-        }
-
-        public void EnrollStudent(string name, string program)
-        {
-            var student = new Student(name, program);
-            studentDataService.AddStudent(student);
         }
 
         public bool RemoveStudent(string name)
@@ -51,6 +52,23 @@ namespace EnrollmentBusinessLogic
         public List<Student> GetAllStudents()
         {
             return studentDataService.GetAllStudents();
+        }
+
+        public void EnrollStudent(string name, string program)
+        {
+            _currentStudentSequence++;
+
+
+            string newStudentID = $"2025-{_currentStudentSequence:D5}"; 
+
+            var student = new Student(name, program, newStudentID);
+
+            studentDataService.AddStudent(student);
+        }
+
+        public bool LoginStudent(string name, string studentID)
+        {
+            return studentDataService.Login(name, studentID);
         }
     }
 }

@@ -1,144 +1,157 @@
 ﻿using System;
+using System.Collections.Generic;
 using EnrollmentCommon;
-using Microsoft.Data.Sql;
 using Microsoft.Data.SqlClient;
-
 
 namespace EnrollmentDataService
 {
     public class DBEnrollmentService : IStudentDataService
     {
-        static string connectionString
-        = "Data Source =koy\\SQLEXPRESS; Initial Catalog = Enrollment; Integrated Security = True; TrustServerCertificate=True;";
-        public DBEnrollmentService()
-        {
-            sqlConnection = new SqlConnection(connectionString);
-        }
+        static string connectionString =
+            "Data Source=koy\\SQLEXPRESS;Initial Catalog=Enrollment;Integrated Security=True;TrustServerCertificate=True;";
 
         public void AddStudent(Student student)
         {
-            sqlConnection.Open();
-            var insertStatement = "INSERT INTO Student VALUES (@Name, @Course, @StudentID)";
-
-            SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
-            insertCommand.Parameters.AddWithValue("@Name", student.Name);
-            insertCommand.Parameters.AddWithValue("@Course", student.Course);
-            insertCommand.Parameters.AddWithValue("@StudentID", student.StudentID);
-            
-
-            insertCommand.ExecuteNonQuery();
-
-            sqlConnection.Close();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "INSERT INTO Student (Name, Course, StudentID) VALUES (@Name, @Course, @StudentID)";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", student.Name);
+                    command.Parameters.AddWithValue("@Course", student.Program); 
+                    command.Parameters.AddWithValue("@StudentID", student.StudentID);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public Student FindStudent(string name)
         {
-            sqlConnection.Open();
-            string query = "SELECT * FROM Student WHERE Name = @Name";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
-            command.Parameters.AddWithValue("@Name", name);
-
-            
-            SqlDataReader reader = command.ExecuteReader();
-            Student student = null;
-
-            if (reader.Read())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                student = new Student
+                connection.Open();
+                string query = "SELECT Name, Course, StudentID FROM Student WHERE Name = @Name";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    Name = reader["Name"].ToString(),
-                    Course = reader["Course"].ToString(),
-                    StudentID = reader["StudentID"].ToString()
-                };
+                    command.Parameters.AddWithValue("@Name", name);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Student(
+                                reader["Name"].ToString(),
+                                reader["Course"].ToString(), 
+                                reader["StudentID"].ToString()
+                            );
+                        }
+                    }
+                }
             }
-
-            reader.Close();
-            sqlConnection.Close();
-            return student;
+            return null;
         }
-        
 
         public List<Student> GetAllStudents()
         {
-            sqlConnection.Open();
             List<Student> students = new List<Student>();
-            string query = "SELECT * FROM Student";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
 
-           
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                students.Add(new Student
+                connection.Open();
+                string query = "SELECT Name, Course, StudentID FROM Student";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    Name = reader["Name"].ToString(),
-                    Course = reader["Course"].ToString(),
-                    StudentID = reader["StudentID"].ToString()
-                });
+                    while (reader.Read())
+                    {
+                        students.Add(new Student(
+                            reader["Name"].ToString(),
+                            reader["Course"].ToString(), 
+                            reader["StudentID"].ToString()
+                        ));
+                    }
+                }
             }
-
-            reader.Close();
-            sqlConnection.Close();
             return students;
         }
 
-        public bool Login(string? name, string? studentID)
+        public int GetMaxStudentSequenceId()
         {
-            sqlConnection.Open();
-            string query = "SELECT COUNT(*) FROM Student WHERE Name = @Name AND StudentID = @StudentID";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
-
-            command.Parameters.AddWithValue("@Name", name);
-            command.Parameters.AddWithValue("@StudentID", studentID);
-
-            
-            int count = (int)command.ExecuteScalar();
-
-            sqlConnection.Close();
-            return count > 0;
-           
+            int maxSequenceId = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COALESCE(MAX(CAST(SUBSTRING(StudentID, 6, 5) AS INT)), 0) FROM Student";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        maxSequenceId = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return maxSequenceId;
+        }
+        public bool Login(string name, string studentID)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT COUNT(*) FROM Student WHERE Name = @Name AND StudentID = @StudentID";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@StudentID", studentID);
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
         }
 
         public bool RemoveStudent(string name)
         {
-            sqlConnection.Open();
-            string query = "DELETE FROM Student WHERE Name = @Name";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
-            command.Parameters.AddWithValue("@Name", name);
-
-            int rowsAffected = command.ExecuteNonQuery();
-
-            sqlConnection.Close();
-            return rowsAffected > 0;
-           
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "DELETE FROM Student WHERE Name = @Name";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", name);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
         }
 
         public void UpdateStudentName(Student student, string newName)
         {
-            sqlConnection.Open();
-            string query = "UPDATE Student SET Name = @NewName WHERE StudentID = @StudentID";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
-
-            command.Parameters.AddWithValue("@NewName", newName);
-            command.Parameters.AddWithValue("@StudentID", student.StudentID);
-
-            command.ExecuteNonQuery();
-            sqlConnection.Close();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Student SET Name = @NewName WHERE StudentID = @StudentID";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NewName", newName);
+                    command.Parameters.AddWithValue("@StudentID", student.StudentID);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public void UpdateStudentProgram(Student student, string newProgram)
         {
-            sqlConnection.Open();
-            string query = "UPDATE Student SET Course = @NewProgram WHERE StudentID = @StudentID";
-            SqlCommand command = new SqlCommand(query, sqlConnection);
-
-            command.Parameters.AddWithValue("@NewProgram", newProgram);
-            command.Parameters.AddWithValue("@StudentID", student.StudentID);
-
-            command.ExecuteNonQuery();
-            sqlConnection.Close();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "UPDATE Student SET Course = @NewProgram WHERE StudentID = @StudentID"; 
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NewProgram", newProgram);
+                    command.Parameters.AddWithValue("@StudentID", student.StudentID);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
-      

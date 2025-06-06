@@ -94,5 +94,10 @@ namespace EnrollmentDataService
         {
             throw new NotImplementedException();
         }
+
+        public int GetMaxStudentSequenceId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -189,5 +189,9 @@ namespace EnrollmentDataService
                 SaveChanges();
             }
         }
+        public int GetMaxStudentSequenceId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

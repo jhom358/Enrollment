@@ -4,6 +4,7 @@ using System.IO;
 using EnrollmentCommon;
 using EnrollmentBusinessLogic;
 using EnrollmentDataService;
+using System.Linq; 
 
 class Enrollment
 {
@@ -40,7 +41,7 @@ class Enrollment
                 break;
             case "2":
                 LoginStudent();
-                break;
+                break; 
             case "3":
                 RegisterNewStudent();
                 break;
@@ -63,7 +64,7 @@ class Enrollment
         Console.Write("Enter Student ID: ");
         string studentID = Console.ReadLine();
 
-        bool isLoggedIn = dataService.Login(name, studentID);
+        bool isLoggedIn = enrollmentManager.LoginStudent(name, studentID);
 
         if (isLoggedIn)
         {
@@ -90,9 +91,9 @@ class Enrollment
             "[11] BEED", "[12] BSA", "[13] Exit"
         };
 
-        foreach (string course in courses)
+        foreach (string courseOption in courses) 
         {
-            Console.WriteLine(course);
+            Console.WriteLine(courseOption);
         }
 
         Console.Write("\nEnter your Course Number: ");
@@ -106,9 +107,9 @@ class Enrollment
         }
 
         string[] programs = {
-        "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET",
-        "BSP", "BSBA-HRM", "BSE-ENGLISH", "BSE-SOCIAL STUDIES", "BEED", "BSA"
-    };
+            "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET",
+            "BSP", "BSBA-HRM", "BSE-ENGLISH", "BSE-SOCIAL STUDIES", "BEED", "BSA"
+        };
         int courseIndex = Convert.ToInt32(courseChoice) - 1;
         if (courseIndex >= 0 && courseIndex < programs.Length)
         {
@@ -150,6 +151,7 @@ class Enrollment
             Console.WriteLine("Incorrect Password.");
             LoginAdmin();
         }
+        Menu();
     }
 
     static void Admin()
@@ -193,14 +195,19 @@ class Enrollment
     static void ShowStudents()
     {
         var students = enrollmentManager.GetAllStudents();
-        List<string> studentLines = new List<string>();
+        if (students == null || !students.Any()) 
+        {
+            Console.WriteLine("\nNo students enrolled yet.");
+            return;
+        }
 
+        Console.WriteLine("\n--- Enrolled Students ---");
         foreach (var student in students)
         {
-            string info = $" {student.Name} | {student.Program} |  {student.StudentID}";
+            string info = $"Name: {student.Name,-20} | Program: {student.Program,-15} | Student ID: {student.StudentID}";
             Console.WriteLine(info);
-            studentLines.Add(info);
         }
+        Console.WriteLine("---------------------------\n");
     }
 
     static void EditStudent()
@@ -257,4 +264,3 @@ class Enrollment
         Admin();
     }
 }
-

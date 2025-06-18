@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using EnrollmentCommon;
 using EnrollmentBusinessLogic;
-using EnrollmentDataService;
 
 class Enrollment
 {
-    static IStudentDataService dataService = new DBEnrollmentService();
-    static EnrollmentManager enrollmentManager = new EnrollmentManager(dataService);
-
+    static EnrollBusinessLogic businessLogic = new EnrollBusinessLogic();
     static void Main(string[] args)
     {
         Menu();
@@ -58,12 +55,12 @@ class Enrollment
     {
         Console.WriteLine("\nLog in as a Student\n");
         Console.Write("Enter Name: ");
-        string name = Console.ReadLine();
+        string name = Console.ReadLine().ToUpper();
 
         Console.Write("Enter Student ID: ");
         string studentID = Console.ReadLine();
 
-        bool isLoggedIn = dataService.Login(name, studentID);
+        bool isLoggedIn = businessLogic.Login(name, studentID);
 
         if (isLoggedIn)
         {
@@ -77,7 +74,7 @@ class Enrollment
         Menu();
     }
 
-    static void RegisterNewStudent()
+    private static void RegisterNewStudent()
     {
         Console.WriteLine("\nRegister as a New Student\n");
         Console.Write("Enter your Full Name: ");
@@ -88,7 +85,13 @@ class Enrollment
             "[1] BSIT", "[2] DIT", "[3] BSCPE", "[4] BSIE", "[5] DCE", "[6] DIET",
             "[7] BSP", "[8] BSBA-HRM", "[9] BSE-English", "[10] BSE-Social Studies",
             "[11] BEED", "[12] BSA", "[13] Exit"
+        }; 
+        string[] courseValue = {
+            "BSIT", "DIT", "BSCPE", "BSIE", "DCE", "DIET",
+            "BSP", "BSBA-HRM", "BSE-English", "BSE-Social Studies",
+            "BEED", "BSA"
         };
+        
 
         foreach (string course in courses)
         {
@@ -96,33 +99,25 @@ class Enrollment
         }
 
         Console.Write("\nEnter your Course Number: ");
-        string courseChoice = Console.ReadLine();
+        int courseChoice =  Convert.ToInt16(Console.ReadLine());
 
-        if (courseChoice == "13")
+        courseChoice--;
+        if (courseChoice == 13)
         {
             Console.WriteLine("Exiting Enrollment. Thank you!");
             Menu();
-            return;
         }
-
-        Dictionary<string, string> courseMap = new Dictionary<string, string>()
+        if (courseChoice < 13)
         {
-            {"1", "BSIT"}, {"2", "DIT"}, {"3", "BSCPE"}, {"4", "BSIE"},
-            {"5", "DCE"}, {"6", "DIET"}, {"7", "BSP"}, {"8", "BSBA-HRM"},
-            {"9", "BSE-ENGLISH"}, {"10", "BSE-SOCIAL STUDIES"}, {"11", "BEED"}, {"12", "BSA"}
-        };
-
-        if (courseMap.ContainsKey(courseChoice))
-        {
-            string program = courseMap[courseChoice];
-            enrollmentManager.EnrollStudent(name, program);
+            string program = courseValue[courseChoice];
+            businessLogic.AddStudents(name, program);
             Console.WriteLine($"You are now enrolled as a new student of {program}!");
+            Console.WriteLine($"Your Student ID is: {businessLogic.DisplayStudentID()}");
         }
         else
         {
             Console.WriteLine("Invalid Course Number. Please try again.");
         }
-
         Menu();
     }
 
@@ -170,10 +165,10 @@ class Enrollment
                 ShowStudents();
                 break;
             case 2:
-                Console.Write("Enter the name of the student to remove: ");
-                string removeName = Console.ReadLine().ToUpper();
+                Console.Write("Enter StudentID to Remove : ");
+                string removeName = Console.ReadLine();
 
-                if (enrollmentManager.RemoveStudent(removeName))
+                if (businessLogic.RemoveStudent(removeName))
                     Console.WriteLine("Student removed successfully!");
                 else
                     Console.WriteLine("Student not found.");
@@ -194,29 +189,24 @@ class Enrollment
 
     static void ShowStudents()
     {
-        var students = enrollmentManager.GetAllStudents();
-        List<string> studentLines = new List<string>();
+        var students = businessLogic.GetAllStudents();
 
         foreach (var student in students)
         {
             string info = $" {student.Name} | {student.Program} |  {student.StudentID}";
             Console.WriteLine(info);
-            studentLines.Add(info);
         }
-
-        File.WriteAllLines("students.txt", studentLines);
-        Console.WriteLine("\nExported to 'students.txt'.");
         Console.ReadKey();
         Admin();
     }
 
     static void EditStudent()
     {
-        Console.Write("Enter the name of the student to edit: ");
-        string name = Console.ReadLine().ToUpper();
+        Console.Write("Enter the StudentID to Edit : ");
+        string studentID = Console.ReadLine().ToUpper();
 
-        var student = enrollmentManager.GetStudent(name);
-        if (student == null)
+        var student = businessLogic.GetStudent(studentID);
+        if (student != true)
         {
             Console.WriteLine("Student not Found.");
             Admin();
@@ -232,7 +222,7 @@ class Enrollment
         {
             Console.Write("Enter new Name: ");
             string newName = Console.ReadLine().ToUpper();
-            enrollmentManager.UpdateStudentName(name, newName);
+            businessLogic.UpdateStudentName(studentID, newName);
             Console.WriteLine("Name Updated.");
         }
         else if (choice == "2")
@@ -245,10 +235,11 @@ class Enrollment
             }
 
             Console.Write("Enter new program Number: ");
-            int progIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+            int progIndex = Convert.ToInt32(Console.ReadLine());
+            progIndex--; 
             if (progIndex >= 0 && progIndex < programs.Length)
             {
-                enrollmentManager.UpdateStudentProgram(name, programs[progIndex]);
+                businessLogic.UpdateStudentProgram(studentID, programs[progIndex]);
                 Console.WriteLine("Program Updated.");
             }
             else

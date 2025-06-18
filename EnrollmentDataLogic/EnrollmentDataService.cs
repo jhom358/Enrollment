@@ -1,47 +1,61 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using EnrollmentCommon;
-
+using EnrollmentDataService;
 namespace EnrollmentBusinessData
 {
-    public static class StudentDataService
+    public class StudentDataService 
     {
-        private static List<Student> _students = new List<Student>();
-
-        public static void AddStudent(Student student)
+        IStudentDataService interfaceData;
+        public StudentDataService()
         {
-            _students.Add(student);
+            //interfaceData = new MemoryData();
+            //interfaceData = new JsonData();
+            //interfaceData = new TextData();
+            interfaceData = new DatabaseData();
+        }
+        public string DisplayStudentID()
+        {
+            return interfaceData.DisplayStudentID();
+        }
+        public List<Student> GetStudentData()
+        {
+            return interfaceData.GetAllStudents();
+        }
+        public void AddStudents(Student student)
+        {
+            interfaceData.AddStudent(student);
         }
 
-        public static bool RemoveStudent(string name)
+        public bool RemoveStudent(string name)
         {
-            var student = _students.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            if (student != null)
-            {
-                _students.Remove(student);
-                return true;
-            }
-            return false;
+            return interfaceData.RemoveStudent(name);
         }
 
-        public static Student FindStudent(string name)
+        public bool Login(Student student)
         {
-            return _students.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return interfaceData.Login(student);
         }
 
-        public static List<Student> GetAllStudents()
+        public List<Student> GetAllStudents()
         {
-            return _students;
+            return interfaceData.GetAllStudents();
         }
 
-        public static void UpdateStudentName(Student student, string newName)
+        public void UpdateStudentName(Student student, string newName)
         {
-            student.Name = newName;
+            interfaceData.UpdateStudentName(student, newName);
         }
 
-        public static void UpdateStudentProgram(Student student, string newProgram)
+        public  void UpdateStudentProgram(Student student, string newProgram)
         {
-            student.Program = newProgram;
+            interfaceData.UpdateStudentProgram(student, newProgram);
         }
+        public bool FindStudents(Student student)
+        {
+            return interfaceData.FindStudents(student);
+        }
+
+        
     }
 }

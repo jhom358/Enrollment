@@ -8,20 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EnrollmentBusinessLogic\**" />
     <Compile Remove="EnrollmentCommon\**" />
     <Compile Remove="EnrollmentDataLogic\**" />
     <Compile Remove="EnrollmentDataService\**" />
+    <EmbeddedResource Remove="EnrollmentBusinessLogic\**" />
     <EmbeddedResource Remove="EnrollmentCommon\**" />
     <EmbeddedResource Remove="EnrollmentDataLogic\**" />
     <EmbeddedResource Remove="EnrollmentDataService\**" />
+    <None Remove="EnrollmentBusinessLogic\**" />
     <None Remove="EnrollmentCommon\**" />
     <None Remove="EnrollmentDataLogic\**" />
     <None Remove="EnrollmentDataService\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EnrollementBusinessLogic\EnrollementBusinessLogic.csproj" />
     <ProjectReference Include="EnrollmentCommon\EnrollmentCommon.csproj" />
-    <ProjectReference Include="EnrollmentDataLogic\EnrollmentDataService.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,11 +6,13 @@ namespace EnrollmentDataService
     public interface IStudentDataService
     {
         List<Student> GetAllStudents();
-        void AddStudent(Student student);
-        bool RemoveStudent(string name);
-        Student FindStudent(string name);
-        void UpdateStudentName(Student student, string newName);
-        void UpdateStudentProgram(Student student, string newProgram);
-        bool Login(string? name, string? studentID);
+        public string GenerateStudentID();
+        public string DisplayStudentID();
+        public void AddStudent(Student student);
+        public bool RemoveStudent(string name);
+        public bool Login(Student student);
+        public bool FindStudents(Student student);
+        public void UpdateStudentName(Student student, string newName);
+        public void UpdateStudentProgram(Student student, string newProgram);
     }
 }

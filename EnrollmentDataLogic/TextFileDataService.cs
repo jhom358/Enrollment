@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EnrollmentDataService
 {
-    public class TextData : IStudentDataService
+    public class TextFileDataService : IStudentDataService
     {
         private string filepath = "students.txt";
         List<Student> students = new List<Student>();
-        public TextData()
+        public TextFileDataService()
         {
             GetDataFromText();
         }

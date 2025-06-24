@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EnrollmentDataService
 {
-    public class JsonData : IStudentDataService
+    public class JsonFileDataService : IStudentDataService
     {
         string filepath = "students.json";
         List<Student> students = new List<Student>();
-        public JsonData()
+        public JsonFileDataService()
         {
             GetDataFromJson();
         }

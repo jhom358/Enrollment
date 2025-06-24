@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentDataService", "En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentCommon", "EnrollmentCommon\EnrollmentCommon.csproj", "{E8CEBB05-EB0E-4657-B3D4-D2515768E3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollementBusinessLogic", "..\EnrollementBusinessLogic\EnrollementBusinessLogic.csproj", "{A2388A89-A1E2-4993-B4EF-C044023EEF2B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentBusinessLogic", "..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj", "{A2388A89-A1E2-4993-B4EF-C044023EEF2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

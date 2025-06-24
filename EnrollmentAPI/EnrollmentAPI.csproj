@@ -12,14 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EnrollementBusinessLogic">
-      <HintPath>..\..\..\Documents\GitHub\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollementBusinessLogic.dll</HintPath>
+    <Reference Include="EnrollmentBusinessLogic">
+      <HintPath>..\..\EnrollementBusinessLogic\obj\Debug\net8.0\EnrollmentBusinessLogic.dll</HintPath>
     </Reference>
     <Reference Include="EnrollmentCommon">
-      <HintPath>..\..\..\Documents\GitHub\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollmentCommon.dll</HintPath>
+      <HintPath>..\EnrollmentCommon\obj\Debug\net8.0\EnrollmentCommon.dll</HintPath>
     </Reference>
     <Reference Include="EnrollmentDataService">
-      <HintPath>..\..\..\Documents\GitHub\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollmentDataService.dll</HintPath>
+      <HintPath>..\EnrollmentDataLogic\obj\Debug\net8.0\EnrollmentDataService.dll</HintPath>
     </Reference>
   </ItemGroup>
 

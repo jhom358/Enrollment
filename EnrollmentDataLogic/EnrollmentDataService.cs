@@ -9,10 +9,10 @@ namespace EnrollmentBusinessData
         IStudentDataService interfaceData;
         public StudentDataService()
         {
-            //interfaceData = new MemoryData();
-            //interfaceData = new JsonData();
-            //interfaceData = new TextData();
-            interfaceData = new DatabaseData();
+            //interfaceData = new InMemoryDataService();
+            //interfaceData = new JsonFileDataService();
+            //interfaceData = new TextFileDataService();
+            interfaceData = new DBEnrollmentService();
         }
         public string DisplayStudentID()
         {

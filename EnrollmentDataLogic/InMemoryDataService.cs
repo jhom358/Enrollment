@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EnrollmentDataService
 {
-    public class MemoryData : IStudentDataService
+    public class InMemoryDataService : IStudentDataService
     {
         private static List<Student> students = new List<Student>();
         public string GenerateStudentID()

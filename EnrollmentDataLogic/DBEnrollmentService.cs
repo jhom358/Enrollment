@@ -7,12 +7,12 @@ using EnrollmentCommon;
 using Microsoft.Data.SqlClient;
 namespace EnrollmentDataService
 {
-    public class DatabaseData : IStudentDataService
+    public class DBEnrollmentService : IStudentDataService
     {
         string connectionString = "Data Source =koy\\SQLEXPRESS; Initial Catalog = Enrollment ; Integrated Security=true;TrustServerCertificate=True;";
         SqlConnection sqlConnection;
         List<Student> students = new List<Student>();
-        public DatabaseData()
+        public DBEnrollmentService()
         {
             sqlConnection = new SqlConnection(connectionString);
             GetDataFromDatabase();
@@ -141,7 +141,7 @@ namespace EnrollmentDataService
         public void UpdateStudentNameInDatabase(string studentID, string newName)
         {
             sqlConnection.Open();
-            string updateQuery = "update students set Name = @Name where StudentID = @StudentID";
+            string updateQuery = "Update students set Name = @Name where StudentID = @StudentID";
             SqlCommand updateCommand = new SqlCommand(updateQuery, sqlConnection);
             updateCommand.Parameters.AddWithValue("@Name", newName);
             updateCommand.Parameters.AddWithValue("@StudentID", studentID);
@@ -164,7 +164,7 @@ namespace EnrollmentDataService
         public void UpdateStudentProgramInDatabase(string studentID, string newProgram)
         {
             sqlConnection.Open();
-            string updateQuery = "update students set Program = @Program where StudentID = @StudentID";
+            string updateQuery = "Update students set Program = @Program where StudentID = @StudentID";
             SqlCommand updateCommand = new SqlCommand(updateQuery, sqlConnection);
             updateCommand.Parameters.AddWithValue("@Program", newProgram);
             updateCommand.Parameters.AddWithValue("@StudentID", studentID);

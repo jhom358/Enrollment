@@ -124,7 +124,7 @@ class Enrollment
     static void LoginAdmin()
     {
         Console.WriteLine("\nLog in as Admin");
-        Console.Write("\nEnter your Admin Account: ");
+        Console.Write("\nEnter your Admin Username: ");
         string username = Console.ReadLine();
 
         if (username != "admin")

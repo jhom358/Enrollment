@@ -26,6 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Resources.Extensions" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj" />
     <ProjectReference Include="EnrollmentCommon\EnrollmentCommon.csproj" />
   </ItemGroup>

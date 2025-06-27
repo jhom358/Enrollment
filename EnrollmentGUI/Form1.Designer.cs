@@ -40,8 +40,9 @@
             // button1
             // 
             button1.BackColor = Color.FromArgb(33, 150, 243);
-            button1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Black;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(162, 270);
             button1.Name = "button1";
             button1.Size = new Size(153, 51);
@@ -53,8 +54,9 @@
             // button2
             // 
             button2.BackColor = Color.FromArgb(33, 150, 243);
-            button2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.Black;
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
             button2.Location = new Point(265, 188);
             button2.Name = "button2";
             button2.Size = new Size(153, 51);
@@ -66,8 +68,9 @@
             // button3
             // 
             button3.BackColor = Color.FromArgb(33, 150, 243);
-            button3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.Black;
+            button3.FlatStyle = FlatStyle.Popup;
+            button3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.ForeColor = Color.White;
             button3.Location = new Point(46, 188);
             button3.Name = "button3";
             button3.Size = new Size(153, 51);
@@ -79,9 +82,11 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.FlatStyle = FlatStyle.Popup;
             label1.Font = new Font("Yu Gothic UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(162, 87);
+            label1.Location = new Point(162, 89);
             label1.Name = "label1";
             label1.Size = new Size(131, 47);
             label1.TabIndex = 3;
@@ -99,8 +104,9 @@
             // button4
             // 
             button4.BackColor = Color.Red;
-            button4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.ForeColor = Color.Black;
+            button4.FlatStyle = FlatStyle.Popup;
+            button4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button4.ForeColor = Color.White;
             button4.Location = new Point(292, 360);
             button4.Name = "button4";
             button4.Size = new Size(153, 51);
@@ -121,6 +127,8 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

@@ -39,7 +39,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Cyan;
+            button1.BackColor = Color.FromArgb(33, 150, 243);
             button1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.Black;
             button1.Location = new Point(162, 270);
@@ -52,7 +52,7 @@
             // 
             // button2
             // 
-            button2.BackColor = Color.Cyan;
+            button2.BackColor = Color.FromArgb(33, 150, 243);
             button2.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.Black;
             button2.Location = new Point(265, 188);
@@ -65,7 +65,7 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.Cyan;
+            button3.BackColor = Color.FromArgb(33, 150, 243);
             button3.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.Black;
             button3.Location = new Point(46, 188);
@@ -98,7 +98,7 @@
             // 
             // button4
             // 
-            button4.BackColor = Color.Cyan;
+            button4.BackColor = Color.Red;
             button4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button4.ForeColor = Color.Black;
             button4.Location = new Point(292, 360);

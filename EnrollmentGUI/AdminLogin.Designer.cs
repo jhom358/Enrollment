@@ -1,6 +1,6 @@
 ﻿namespace EnrollmentGUI
 {
-    partial class LoginForm
+    partial class AdminLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -79,6 +79,7 @@
             tb_password.Name = "tb_password";
             tb_password.Size = new Size(100, 23);
             tb_password.TabIndex = 4;
+            tb_password.PasswordChar = '*';  this. tb_password.PasswordChar = '*';
             // 
             // btn_Login
             // 
@@ -100,7 +101,7 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // LoginForm
+            // AdminLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -113,7 +114,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "LoginForm";
+            Name = "AdminLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
             ResumeLayout(false);

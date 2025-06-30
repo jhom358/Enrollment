@@ -23,7 +23,7 @@ namespace EnrollmentGUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoginForm a2 = new LoginForm();
+            AdminLogin a2 = new AdminLogin();
             a2.Show();
             this.Hide();
         }

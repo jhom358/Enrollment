@@ -12,11 +12,12 @@ using Microsoft.Win32.SafeHandles;
 
 namespace EnrollmentGUI
 {
-    public partial class LoginForm : Form
+    public partial class AdminLogin : Form
     {
-        public LoginForm()
+        public AdminLogin()
         {
             InitializeComponent();
+            tb_password.PasswordChar = '*';
         }
 
         private void btn_Login_Check(object sender, EventArgs e)

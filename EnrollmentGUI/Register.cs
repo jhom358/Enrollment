@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace EnrollmentGUI
 {
     public partial class Register : Form
     {
-        string connectionString = "Data Source =koy\\SQLEXPRESS; Initial Catalog = Enrollment ; Integrated Security=true;TrustServerCertificate=True;";
-        SqlConnection sqlConnection;
+        string connectionString = "Data Source=koy\\SQLEXPRESS; Initial Catalog=Enrollment; Integrated Security=True;TrustServerCertificate=True;";
 
         public Register()
         {
@@ -68,10 +70,32 @@ namespace EnrollmentGUI
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@studentId", studentId);
                         cmd.Parameters.AddWithValue("@program", program);
-
                         cmd.ExecuteNonQuery();
                     }
                 }
+
+                string textPath = Path.Combine(Application.StartupPath, "students.txt");
+                string line = $"Name: {name}, StudentID: {studentId}, Program: {program}";
+                File.AppendAllText(textPath, line + Environment.NewLine);
+
+                string jsonPath = Path.Combine(Application.StartupPath, "students.json");
+                List<StudentData> students = new List<StudentData>();
+
+                if (File.Exists(jsonPath))
+                {
+                    string existingJson = File.ReadAllText(jsonPath);
+                    students = JsonConvert.DeserializeObject<List<StudentData>>(existingJson) ?? new List<StudentData>();
+                }
+
+                students.Add(new StudentData
+                {
+                    Name = name,
+                    StudentID = studentId,
+                    Program = program
+                });
+
+                string updatedJson = JsonConvert.SerializeObject(students, Formatting.Indented);
+                File.WriteAllText(jsonPath, updatedJson);
 
                 MessageBox.Show("Registered Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 tb_register.Clear();
@@ -83,9 +107,17 @@ namespace EnrollmentGUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving to database:\n" + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving data:\n" + ex.Message, "Database/File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 mainForm = new Form1();
+            mainForm.Show();
+            this.Hide();
+        }
+
         private string GenerateStudentID()
         {
             int studentNumber = 0;
@@ -116,17 +148,11 @@ namespace EnrollmentGUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error generating Student ID:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error generating ID:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return studentID;
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form1 mainForm = new Form1();
-            mainForm.Show();
-            this.Hide();
-        }
     }
 }
+   

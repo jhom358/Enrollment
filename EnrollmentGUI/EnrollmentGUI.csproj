@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
@@ -18,10 +19,10 @@
       <HintPath>..\..\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollmentBusinessLogic.dll</HintPath>
     </Reference>
     <Reference Include="EnrollmentCommon">
-      <HintPath>..\EnrollmentCommon\obj\Debug\net8.0\EnrollmentCommon.dll</HintPath>
+      <HintPath>..\..\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollmentCommon.dll</HintPath>
     </Reference>
     <Reference Include="EnrollmentDataService">
-      <HintPath>..\EnrollmentDataLogic\obj\Debug\net8.0\EnrollmentDataService.dll</HintPath>
+      <HintPath>..\..\EnrollementBusinessLogic\bin\Debug\net8.0\EnrollmentDataService.dll</HintPath>
     </Reference>
   </ItemGroup>
 

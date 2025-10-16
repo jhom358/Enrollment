@@ -110,7 +110,7 @@ class Enrollment
         if (courseChoice < 13)
         {
             string program = courseValue[courseChoice];
-            businessLogic.AddStudents(name, program);
+            EnrollBusinessLogic.AddStudents(name, program);
             Console.WriteLine($"You are now enrolled as a new student of {program}!");
             Console.WriteLine($"Your Student ID is: {businessLogic.DisplayStudentID()}");
         }

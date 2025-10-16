@@ -29,7 +29,7 @@ namespace EnrollmentAPI.Controllers
         [HttpPost("Add Student")]
         public void AddStudent(string name, string program)
         {
-            enrollmentBusinessLogic.AddStudents(name, program);
+            EnrollBusinessLogic.AddStudents(name, program);
         }
         [HttpDelete("Remove Student")]
         public bool RemoveStudent(string studentID)

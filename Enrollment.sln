@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentCommon", "Enrollm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentBusinessLogic", "..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj", "{A2388A89-A1E2-4993-B4EF-C044023EEF2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentAPI", "EnrollmentAPI\EnrollmentAPI.csproj", "{A77A8FD4-08DA-A862-A6BA-830A4429CE8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnrollmentGUI", "EnrollmentGUI\EnrollmentGUI.csproj", "{1493982C-D41D-6CD5-7C19-CBD99DEBEB87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{A2388A89-A1E2-4993-B4EF-C044023EEF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2388A89-A1E2-4993-B4EF-C044023EEF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2388A89-A1E2-4993-B4EF-C044023EEF2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A77A8FD4-08DA-A862-A6BA-830A4429CE8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A77A8FD4-08DA-A862-A6BA-830A4429CE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A77A8FD4-08DA-A862-A6BA-830A4429CE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A77A8FD4-08DA-A862-A6BA-830A4429CE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1493982C-D41D-6CD5-7C19-CBD99DEBEB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1493982C-D41D-6CD5-7C19-CBD99DEBEB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1493982C-D41D-6CD5-7C19-CBD99DEBEB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1493982C-D41D-6CD5-7C19-CBD99DEBEB87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

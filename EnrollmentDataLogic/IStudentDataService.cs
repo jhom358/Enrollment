@@ -14,5 +14,6 @@ namespace EnrollmentDataService
         public bool FindStudents(Student student);
         public void UpdateStudentName(Student student, string newName);
         public void UpdateStudentProgram(Student student, string newProgram);
+        List<Student> GetStudentData();
     }
 }

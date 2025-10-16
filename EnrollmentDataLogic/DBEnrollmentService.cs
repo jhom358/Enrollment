@@ -171,5 +171,10 @@ namespace EnrollmentDataService
             updateCommand.ExecuteNonQuery();
             sqlConnection.Close();
         }
+
+        List<Student> IStudentDataService.GetStudentData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

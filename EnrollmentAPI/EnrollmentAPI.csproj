@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="EnrollmentBusinessLogic">
       <HintPath>..\..\EnrollementBusinessLogic\obj\Debug\net8.0\EnrollmentBusinessLogic.dll</HintPath>
     </Reference>

@@ -38,7 +38,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj" />
-    <ProjectReference Include="EnrollmentCommon\EnrollmentCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EnrollmentCommon">
+      <HintPath>EnrollmentDataLogic\bin\Debug\net8.0\EnrollmentCommon.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

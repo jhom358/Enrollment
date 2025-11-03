@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
+    <PackageReference Include="MimeKit" Version="4.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
@@ -16,14 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EnrollmentBusinessLogic">
-      <HintPath>..\..\EnrollementBusinessLogic\obj\Debug\net8.0\EnrollmentBusinessLogic.dll</HintPath>
-    </Reference>
     <Reference Include="EnrollmentCommon">
-      <HintPath>..\EnrollmentCommon\obj\Debug\net8.0\EnrollmentCommon.dll</HintPath>
+      <HintPath>..\EnrollmentDataLogic\bin\Debug\net8.0\EnrollmentCommon.dll</HintPath>
     </Reference>
     <Reference Include="EnrollmentDataService">
-      <HintPath>..\EnrollmentDataLogic\obj\Debug\net8.0\EnrollmentDataService.dll</HintPath>
+      <HintPath>..\EnrollmentDataLogic\bin\Debug\net8.0\EnrollmentDataService.dll</HintPath>
     </Reference>
   </ItemGroup>
 

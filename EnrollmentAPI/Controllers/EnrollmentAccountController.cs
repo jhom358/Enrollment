@@ -10,31 +10,36 @@ namespace EnrollmentAPI.Controllers
     [ApiController]
     public class EnrollmentAccountController : ControllerBase
     {
-        static EnrollBusinessLogic enrollmentBusinessLogic = new EnrollBusinessLogic();
+        private readonly EnrollmentBusinessLogic.EnrollBusinessLogic _EnrollBusinessLogic;
+
+        public EnrollmentAccountController(EnrollmentBusinessLogic.EnrollBusinessLogic enrollBusinessLogic)
+        {
+            _EnrollBusinessLogic = enrollBusinessLogic;
+        }
         [HttpGet]
         public IEnumerable<EnrollmentCommon.Student> GetEnrollmentAccounts()
         {
-            return enrollmentBusinessLogic.GetAllStudents();
+            return _EnrollBusinessLogic.GetAllStudents();
         }
         [HttpPatch("Change Program")]
         public void UpdateStudentProgram(string StudentID, string newProgram)
         {
-            enrollmentBusinessLogic.UpdateStudentProgram(StudentID, newProgram);
+            _EnrollBusinessLogic.UpdateStudentProgram(StudentID, newProgram);
         }
         [HttpPatch("Change Name")]
         public void UpdateStudentName(string StudentID, string newName)
         {
-            enrollmentBusinessLogic.UpdateStudentName(StudentID, newName);
+            _EnrollBusinessLogic.UpdateStudentName(StudentID, newName);
         }
         [HttpPost("Add Student")]
         public void AddStudent(string name, string program)
         {
-            EnrollBusinessLogic.AddStudents(name, program);
+            _EnrollBusinessLogic.AddStudents(name, program);
         }
         [HttpDelete("Remove Student")]
         public bool RemoveStudent(string studentID)
         {
-            return enrollmentBusinessLogic.RemoveStudent(studentID);
+            return _EnrollBusinessLogic.RemoveStudent(studentID);
         }
     }
 }

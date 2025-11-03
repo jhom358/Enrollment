@@ -6,7 +6,7 @@ using EnrollmentBusinessLogic;
 
 class Enrollment
 {
-    static EnrollBusinessLogic businessLogic = new EnrollBusinessLogic();
+    static EnrollBusinessLogic businessLogic;
     static void Main(string[] args)
     {
         Menu();
@@ -110,7 +110,7 @@ class Enrollment
         if (courseChoice < 13)
         {
             string program = courseValue[courseChoice];
-            EnrollBusinessLogic.AddStudents(name, program);
+            businessLogic.AddStudents(name, program);
             Console.WriteLine($"You are now enrolled as a new student of {program}!");
             Console.WriteLine($"Your Student ID is: {businessLogic.DisplayStudentID()}");
         }

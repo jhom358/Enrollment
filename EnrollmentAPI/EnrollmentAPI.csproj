@@ -14,16 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\EnrollementBusinessLogic\EnrollmentBusinessLogic.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="EnrollmentCommon">
-      <HintPath>..\EnrollmentDataLogic\bin\Debug\net8.0\EnrollmentCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="EnrollmentDataService">
-      <HintPath>..\EnrollmentDataLogic\bin\Debug\net8.0\EnrollmentDataService.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\EnrollmentBusinessLogic\EnrollmentBusinessLogic.csproj" />
+    <ProjectReference Include="..\EnrollmentCommon\EnrollmentCommon.csproj" />
+    <ProjectReference Include="..\EnrollmentDataLogic\EnrollmentDataService.csproj" />
   </ItemGroup>
 
 </Project>
